@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { createClient } from '@supabase/supabase-js';
 import { supabase } from '@/utils/supabase';
+import { useToast } from "@/hooks/use-toast"
 
 const InfoIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4">
@@ -42,6 +43,7 @@ const TrashIcon = () => (
 );
 
 export default function ApiKeysDashboard() {
+  const { toast } = useToast();
   const [apiKeys, setApiKeys] = useState([]);
   const [editingKey, setEditingKey] = useState(null);
   const [newName, setNewName] = useState('');
@@ -117,7 +119,11 @@ export default function ApiKeysDashboard() {
 
   async function createNewKey() {
     if (!newKeyData.name.trim()) {
-      alert('Please enter a name for the API key');
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter a name for the API key"
+      });
       return;
     }
 
@@ -134,25 +140,23 @@ export default function ApiKeysDashboard() {
         .insert([newKey])
         .select();
 
-      if (error) {
-        console.error('Supabase error:', error);
-        alert(`Error creating key: ${error.message}`);
-        return;
-      }
-
-      if (!data || data.length === 0) {
-        throw new Error('No data returned from insert');
-      }
+      if (error) throw error;
 
       setApiKeys(prev => [...prev, data[0]]);
       setIsModalOpen(false);
       setNewKeyData({ name: '' });
       
-      // Show success message
-      alert('API key created successfully!');
+      toast({
+        title: "Success",
+        description: "API key created successfully!"
+      });
     } catch (error) {
       console.error('Error creating new key:', error);
-      alert(`Failed to create API key: ${error.message}`);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: `Failed to create API key: ${error.message}`
+      });
     }
   }
 
