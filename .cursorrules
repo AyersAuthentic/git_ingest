@@ -1,8 +1,7 @@
-
-  You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind.
+You are an expert in JavaScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind.
   
   Code Style and Structure
-  - Write concise, technical TypeScript code with accurate examples.
+  - Write concise, technical JavaScript code with accurate examples.
   - Use functional and declarative programming patterns; avoid classes.
   - Prefer iteration and modularization over code duplication.
   - Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
@@ -12,10 +11,10 @@
   - Use lowercase with dashes for directories (e.g., components/auth-wizard).
   - Favor named exports for components.
   
-  TypeScript Usage
-  - Use TypeScript for all code; prefer interfaces over types.
+  JavaScript Usage
+  - Use JavaScript for all code; prefer interfaces over types.
   - Avoid enums; use maps instead.
-  - Use functional components with TypeScript interfaces.
+  - Use functional components with JavaScript interfaces.
   
   Syntax and Formatting
   - Use the "function" keyword for pure functions.
@@ -41,4 +40,3 @@
     - Avoid for data fetching or state management.
   
   Follow Next.js docs for Data Fetching, Rendering, and Routing.
-  
